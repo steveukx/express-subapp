@@ -1,0 +1,27 @@
+{
+  "name": "express-subapp",
+  "version": "0.0.0",
+  "description": "Utility to merge locals into a sub app for inclusion in an Express app",
+  "main": "src/index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/steveukx/express-subapp.git"
+  },
+  "keywords": [
+    "express",
+    "app",
+    "locals",
+    "util"
+  ],
+  "author": "Steve King <steve@mydev.co>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/steveukx/express-subapp/issues"
+  },
+  "homepage": "https://github.com/steveukx/express-subapp",
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "grunt-release-steps": "^0.3.7"
+  }
+}
