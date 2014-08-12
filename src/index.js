@@ -51,7 +51,7 @@
                     app.locals[local] = baseApp.locals[local];
                 });
 
-                onAppend && onAppend(app);
+                onAppend && onAppend(app, baseApp);
 
                 if (root > 1) {
                     baseApp.use(root, app);
