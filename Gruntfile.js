@@ -21,7 +21,8 @@ module.exports = function(grunt) {
     'minor major patch'.split(' ').forEach(function(revision, typeOnly) {
         var tasks = [
             'release:bump:add:commit:' + revision,
-            'release:push:tag:pushTags'
+            'release:push:tag:pushTags',
+            'release:npm'
         ];
 
         grunt.registerTask('deploy' + (typeOnly ? '-' + revision : ''), tasks);
