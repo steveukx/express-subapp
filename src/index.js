@@ -1,38 +1,65 @@
 (function () {
 
-    var baseApp, onCreate, onAppend;
 
-    module.exports = function (_onCreate, _onAppend) {
-        onCreate = _onCreate;
-        onAppend = _onAppend;
-    };
+    module.exports = function (onCreate, onAppend) {
+        var baseApp;
 
-    module.exports.merged = ['view engine', 'views'];
+        return {
+            /**
+             * Array of properties to be copied from main app to sub app
+             */
+            merged: ['view engine', 'views'],
 
-    module.exports.create = function (app) {
-        baseApp = app;
-        onCreate && onCreate(app);
-        onAppend && onAppend(app);
+            /**
+             * Array of properties to be copied from main app to sub app locals
+             */
+            locals: [],
 
-        return app;
-    };
+            /**
+             * Register the main express application, the source of merged/locals properties
+             *
+             * @param app
+             */
+            create: function (app) {
+                baseApp = app;
+                onCreate && onCreate(app);
+                onAppend && onAppend(app);
 
-    module.exports.append = function(app, root) {
+                return app;
+            },
 
-        module.exports.merged.forEach(function (merged) {
-            var baseAppValue = baseApp.get(merged);
-            if (baseAppValue !== undefined) {
-                app.set(merged, baseAppValue);
+            /**
+             * Register a sub application, when the root is supplied the app is also bound to the main app.
+             *
+             * @param {string} [root]
+             * @param app
+             */
+            route: function(root, app) {
+                if (arguments.length === 1) {
+                    app = root;
+                    root = null;
+                }
+
+                module.exports.merged.forEach(function (merged) {
+                    var baseAppValue = baseApp.get(merged);
+                    if (baseAppValue !== undefined) {
+                        app.set(merged, baseAppValue);
+                    }
+                });
+
+                module.exports.locals.forEach(function (local) {
+                    app.locals[local] = baseApp.locals[local];
+                });
+
+                onAppend && onAppend(app);
+
+                if (root > 1) {
+                    baseApp.use(root, app);
+                }
+
+                return app;
             }
-        });
-
-        onAppend && onAppend(app);
-
-        if (arguments.length > 1) {
-            baseApp.use(root, app);
-        }
-
-        return app;
+        };
     };
 
 }());
