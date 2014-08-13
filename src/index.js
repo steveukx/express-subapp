@@ -2,9 +2,9 @@
 
 
     module.exports = function (onCreate, onAppend) {
-        var baseApp;
+        var baseApp, api;
 
-        return {
+        return api = {
             /**
              * Array of properties to be copied from main app to sub app
              */
@@ -40,14 +40,14 @@
                     root = null;
                 }
 
-                module.exports.merged.forEach(function (merged) {
+                api.merged.forEach(function (merged) {
                     var baseAppValue = baseApp.get(merged);
                     if (baseAppValue !== undefined) {
                         app.set(merged, baseAppValue);
                     }
                 });
 
-                module.exports.locals.forEach(function (local) {
+                api.locals.forEach(function (local) {
                     app.locals[local] = baseApp.locals[local];
                 });
 
