@@ -53,7 +53,7 @@
 
                 onAppend && onAppend(app, baseApp);
 
-                if (root > 1) {
+                if (!!root) {
                     baseApp.use(root, app);
                 }
 
