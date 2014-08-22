@@ -42,7 +42,7 @@ into the sub apps:
     subApp.locals.push('some-key', 'another-key');
     
     // add the names of any 'app.get' properties in the main application to be set on the sub apps 
-    subApp.locals.push('some-key', 'another-key');
+    subApp.merged.push('some-key', 'another-key');
 
 License
 =======
