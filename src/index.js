@@ -34,7 +34,7 @@
              * @param {string} [root]
              * @param app
              */
-            route: function(root, app) {
+            route: function (root, app) {
                 if (arguments.length === 1) {
                     app = root;
                     root = null;
@@ -58,6 +58,22 @@
                 }
 
                 return app;
+            },
+
+            /**
+             * Reset the onCreate function that would otherwise be set in the constructor
+             * @param {Function} handler
+             */
+            onCreate: function (handler) {
+                onCreate = handler;
+            },
+
+            /**
+             * Reset the onAppend function that would otherwise be set in the constructor
+             * @param {Function} handler
+             */
+            onAppend: function (handler) {
+                onAppend = handler;
             }
         };
     };
