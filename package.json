@@ -1,6 +1,6 @@
 {
   "name": "express-subapp",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Utility to merge locals into a sub app for inclusion in an Express app",
   "main": "src/index.js",
   "scripts": {
